@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: gold;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo h1 {
+    margin-right: 10px;
+  }
+  
+  nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .nav-links {
+    list-style: none;
+  }
+  
+  .nav-links li {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .burger-menu {
+    display: none;
+  }
+  
+  .menu-hidden {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: gold;
+    text-align: center;
+  }
+  
+  .menu-hidden a {
+    display: block;
+    padding: 10px 0;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+  
+    .burger-menu {
+      display: block;
+      font-size: 1.5em;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+    }
+  
+    #menu-toggle {
+      display: none;
+      background-color: antiquewhite;
+    }
+  
+    #menu-toggle:checked + .burger-menu ~ .menu-hidden {
+      display: block;
+      background-color: antiquewhite;
+    }
+  
+    .menu-hidden {
+      position: relative;
+      top: 0;
+    }
+  }
+  
+  .body {
+    padding: 20px;
+    background-color: antiquewhite;
+  }
+  
+  .img-container {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    text-align: center; /* Centering the h1 */
+  }
+  
+  .img-container h1 {
+    margin-top: 20px; /* Adding space between the image and h1 */
+  }
+  
+  .us {
+    margin-top: 20px;
+  }
+  
+  .futur {
+    margin-top: 20px;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .article {
+    width: calc(25% - 20px);
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+    background-color: chartreuse;
+  }
+  
+  .article:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  @media (max-width: 768px) {
+    .article {
+      width: 100%;
+    }
+  }
+  
