@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trello-like App</title>
+  <style>
+    /* Simplified styles for UI */
+    .board {
+      border: 1px solid #be1f1f;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .list {
+      border: 1px solid #ddd;
+      padding: 5px;
+      margin-bottom: 5px;
+    }
+    .card {
+      border: 1px solid #eee;
+      padding: 5px;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="board" id="board">
+    <h2>to do list</h2>
+  </div>
+
+  <script>
+    const board = document.getElementById('board');
+
+    function addList() {
+      const listName = prompt("Enter list name:");
+      if (listName.trim() === '') return;
+
+      const newList = document.createElement('div');
+      newList.classList.add('list');
+      newList.innerHTML = `<h3>${listName}</h3>
+                           <input type="text" placeholder="Enter card title" id="cardTitle-${listName}">
+                           <input type="text" placeholder="Enter card description" id="cardDesc-${listName}">
+                           <button onclick="addCard('${listName}')">Add Card</button>`;
+      
+      board.appendChild(newList);
+    }
+
+    function addCard(listName) {
+      const cardTitle = document.getElementById(`cardTitle-${listName}`).value.trim();
+      const cardDesc = document.getElementById(`cardDesc-${listName}`).value.trim();
+      
+      if (cardTitle === '' || cardDesc === '') return;
+
+      const cardList = document.querySelector(`#${listName} .card-list`);
+      const newCard = document.createElement('div');
+      newCard.classList.add('card');
+      newCard.innerHTML = `<h4>${cardTitle}</h4>
+                           <p>${cardDesc}</p>`;
+      
+      cardList.appendChild(newCard);
+    }
+  </script>
+
+  <button onclick="addList()">Add List</button>
+</body>
+</html>
+
