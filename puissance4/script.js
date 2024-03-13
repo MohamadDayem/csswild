@@ -24,6 +24,7 @@ function setGame() {
             row.push('');
             let title = document.createElement("div");
             title.id = r.toString() + "-" + c.toString();
+            title.innerText = title.id
             title.classList.add("title");
             title.addEventListener("click", setPiece); 
             document.getElementById("board").append(title);
@@ -41,31 +42,51 @@ function setPiece() {
     let r = parseInt(coords[0]);
     let c = parseInt(coords[1]);
 
-    r= currColumns[c];
-    if (r<0){
+    let originalR = currColumns[c]; 
+    if (originalR < 0) {
         return;
     }
 
-
-    board[r][c]= currPlayer;
-    let title = document. getElementById(r.toString() + "-"+c.toString());
-    if (currPlayer == playerRed ){
+    board[originalR][c] = currPlayer;
+    let title = document.getElementById(originalR.toString() + "-" + c.toString());
+    if (currPlayer == playerRed) {
         title.classList.add("red-piece");
         currPlayer = playerYellow;
-  
-    }
-    else{
+    } else {
         title.classList.add("yellow-piece");
         currPlayer = playerRed;
-        
     }
 
-
-    r -= 1;
-    currColumns[c]= r;
-
-
+    currColumns[c] = originalR - 1; 
+    checkWinner();
+}
 
  
+
+function checkWinner() {
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns - 3; c++) {
+            if (board[r][c] != '') {
+                if (board[r][c] == board[r][c + 1] &&
+                    board[r][c] == board[r][c + 2] &&
+                    board[r][c] == board[r][c + 3]) {
+                    setWinner(r, c);
+                    return;
+                }
+            }
+        }
+    }
+
+    function setWinner(r, c) {
+        let winner = document.getElementById("winner");
+        if (board[r][c] == playerRed) {
+            winner.innerText = "Red wins";
+        } else {
+            winner.innerText = "Yellow wins";
+        }
+        gameOver = true;
+    }
+
 }
+
 
