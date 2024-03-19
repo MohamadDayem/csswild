@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monthly Sales and Forecasts</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <canvas id="salesForecastChart" width="800" height="400"></canvas>
+  <script>
+
+    fetch('chart.json')
+      .then(response => response.json())
+      .then(data => {
+        const ctx = document.getElementById('salesForecastChart').getContext('2d');
+        const salesData = data.monthlySales;
+        const forecastData = data.monthlyForecasts;
+
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: Array.from({ length: 12 }, (_, i) => `Month ${i + 1}`),
+            datasets: [
+              {
+                label: 'Monthly Sales',
+                data: salesData,
+                borderColor: 'blue',
+                backgroundColor: 'rgba(0, 0, 255, 0.1)',
+              },
+              {
+                label: 'Monthly Forecasts',
+                data: forecastData,
+                borderColor: 'green',
+                backgroundColor: 'rgba(0, 255, 0, 0.1)',
+              }
+            ]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Amount ($)'
+                }
+              }]
+            }
+          }
+        });
+      });
+  </script>
+</body>
+</html>
