@@ -40,4 +40,13 @@ class MyArray {
         }
         return acc
     }
+
+    find(callback) {
+        for (let i = 0; i < this.tab.length; i++) {
+            if (callback(this.tab[i], i, this.tab)) {
+                return this.tab[i];
+            }
+        }
+        return undefined;
+    }
 }
